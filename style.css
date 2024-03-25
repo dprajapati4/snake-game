@@ -38,7 +38,7 @@ body,
 
 #instruction-text {
   position: absolute;
-  top: 58%;
+  top: 60%;
   color: #333;
   width: 300px;
   text-align: center;
@@ -84,4 +84,13 @@ body,
 
 #logo {
   position: absolute;
+}
+
+.end-game-message {
+  display: none;
+  background-color: #8b966c;
+  position: absolute;
+  width: 300px;
+  font-size: 20px;
+  padding: 10px;
 }
