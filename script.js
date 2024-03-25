@@ -4,6 +4,9 @@ const instructionText = document.getElementById("instruction-text");
 const logo = document.getElementById("logo");
 const score = document.getElementById("score");
 const highScoreText = document.getElementById("highScore");
+const endGameMessageDiv =
+  document.getElementsByClassName("end-game-message")[0];
+const endGameScore = document.getElementById("score-text");
 
 //Define game variables
 const gridSize = 20;
@@ -97,6 +100,10 @@ function move() {
     snake.pop();
   }
 }
+// Function to get current score
+function getCurrentScore() {
+  return snake.length - 1;
+}
 
 // Test moving
 // setInterval(() => {
@@ -109,6 +116,9 @@ function startGame() {
   gameStarted = true; // keep track of a running game
   instructionText.style.display = "none";
   logo.style.display = "none";
+  if (endGameMessageDiv.style.display === "block") {
+    endGameMessageDiv.style.display = "none";
+  }
   gameInterval = setInterval(() => {
     move();
     checkCollision();
@@ -184,20 +194,22 @@ function resetGame() {
 }
 
 function updateScore() {
-  const currentScore = snake.length - 1;
+  const currentScore = getCurrentScore();
   score.textContent = currentScore.toString().padStart(3, "0");
 }
 
 function stopGame() {
   clearInterval(gameInterval);
   gameStarted = false;
-  instructionText.style.display = "block";
-  logo.style.display = "block";
+  endGameScore.innerHTML =
+    "Score: " + getCurrentScore().toString().padStart(3, "0");
+  endGameMessageDiv.style.display = "block";
 }
 
 function updateHighScore() {
-  const currentScore = snake.length - 1;
+  const currentScore = getCurrentScore();
 
+  if (currentScore === 0) return;
   if (currentScore > highScore) {
     highScore = currentScore;
     highScoreText.textContent = highScore.toString().padStart(3, "0");
