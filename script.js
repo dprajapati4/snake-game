@@ -2,6 +2,7 @@
 const board = document.getElementById("game-board");
 const instructionText = document.getElementById("instruction-text");
 const logo = document.getElementById("logo");
+const title = document.getElementById("game-title");
 const score = document.getElementById("score");
 const highScoreText = document.getElementById("highScore");
 const endGameMessageDiv =
@@ -116,6 +117,7 @@ function startGame() {
   gameStarted = true; // keep track of a running game
   instructionText.style.display = "none";
   logo.style.display = "none";
+  title.style.display = "none";
   if (endGameMessageDiv.style.display === "block") {
     endGameMessageDiv.style.display = "none";
   }
